@@ -1,0 +1,82 @@
+﻿@model Model.EF.SANPHAM
+@{
+    ViewBag.Title = @Model.TENSANPHAM;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var category = (Model.EF.LOAISANPHAM)ViewBag.Category;
+}
+@{
+    var relateProducts = (List<Model.EF.SANPHAM>)ViewBag.RelateProduct;
+}
+
+<div id="container-detial-procduct">
+    <div class="row">
+        <div class="col-md-9" style="padding-right: 0;">
+            <div class="breadcrumb">
+                <p><a href="/">Trang chủ</a> > <a href="/san-pham/@category.MALOAISP">@category.TENLOAISP</a> > @ViewBag.Title</p>
+            </div>
+            <div class="content-detail row">
+                <img src="~/Assets/client/images/anh/@Model.HINHANH" title="@Model.TENSANPHAM" width="150px" class="col-sm-5 col-md-5 img-fluid" />
+                <div class="col-sm-7  col-md-7">
+                    <table class="tb-deatil">
+                        <tr>
+                            <td class="td-left">Tên sản phẩm:</td>
+                            <td>@Model.TENSANPHAM</td>
+                        </tr>
+                        <tr>
+                            <td class="td-left">Giá bán:</td>
+                            <td><span style="color: red; font-weight: bolder;">@(Model.GIATRI.HasValue ? Model.GIATRI.Value.ToString("#,##").Replace(',', '.') : "Liên hệ")</span> VNĐ</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-left">
+                                <a href="/them-gio-hang?MaSP=@Model.MASANPHAM&SL=1">
+                                    <input type="submit" class="btn btn-primary" value="Thêm vào giỏ" />
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/"><input type="submit" class="btn btn-success" value="Mua tiếp" /></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 menu-in-detail">
+            @{Html.RenderAction("ProductCategory", "Product");}
+        </div>
+    </div>
+    <div class="content">
+        <div class="content-top">
+            <div class="heading">
+                <h3>Sản phẩm liên quan</h3>
+            </div>
+            <div class="see">
+                <p><a href="/san-pham">Xem tất cả</a></p>
+            </div>
+        </div>
+
+        <div class="row content-product">
+            @foreach (var item in relateProducts)
+            {
+                var url = "/chi-tiet/" + @item.MASANPHAM;
+                <div class="col-md-3 simple-cart">
+                    <a href="@url" class="thumb-item">
+                        <img src="~/Assets/client/images/anh/@item.HINHANH" alt="@item.TENSANPHAM">
+                    </a>
+
+                    <div class="item-info-product">
+                        <h4><a href="@url">@item.TENSANPHAM</a></h4>
+                        <div class="info-product-price">
+                            <span>@(item.GIATRI.HasValue ? item.GIATRI.Value.ToString("#,##").Replace(',', '.') : "Liên hệ") VNĐ</span>
+                        </div>
+                    </div>
+                    <div class="snipCart-detail">
+                        <h4 class="button-cart"><a href="/them-gio-hang?MaSP=@item.MASANPHAM&SL=1">Thêm vào giỏ</a></h4>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

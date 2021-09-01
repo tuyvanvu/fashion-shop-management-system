@@ -1,0 +1,10 @@
+C:\Users\PC\Desktop\Project\PhatTrienPhanMem\code\QLShopThoiTrang\frmMain\bin\Debug\frmMain.exe.config
+C:\Users\PC\Desktop\Project\PhatTrienPhanMem\code\QLShopThoiTrang\frmMain\bin\Debug\frmMain.exe
+C:\Users\PC\Desktop\Project\PhatTrienPhanMem\code\QLShopThoiTrang\frmMain\bin\Debug\frmMain.pdb
+C:\Users\PC\Desktop\Project\PhatTrienPhanMem\code\QLShopThoiTrang\frmMain\obj\Debug\frmMain.csprojAssemblyReference.cache
+C:\Users\PC\Desktop\Project\PhatTrienPhanMem\code\QLShopThoiTrang\frmMain\obj\Debug\frmMain.Form1.resources
+C:\Users\PC\Desktop\Project\PhatTrienPhanMem\code\QLShopThoiTrang\frmMain\obj\Debug\frmMain.Properties.Resources.resources
+C:\Users\PC\Desktop\Project\PhatTrienPhanMem\code\QLShopThoiTrang\frmMain\obj\Debug\frmMain.csproj.GenerateResource.cache
+C:\Users\PC\Desktop\Project\PhatTrienPhanMem\code\QLShopThoiTrang\frmMain\obj\Debug\frmMain.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\Project\PhatTrienPhanMem\code\QLShopThoiTrang\frmMain\obj\Debug\frmMain.exe
+C:\Users\PC\Desktop\Project\PhatTrienPhanMem\code\QLShopThoiTrang\frmMain\obj\Debug\frmMain.pdb

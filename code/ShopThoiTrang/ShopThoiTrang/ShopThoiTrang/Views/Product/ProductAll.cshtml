@@ -1,0 +1,40 @@
+﻿@model PagedList.IPagedList<Model.EF.SANPHAM>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "ProductAll";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div style="margin:30px">
+    <h2 style="text-transform: uppercase; text-align: center">Tất cả sản phẩm của shop</h2>
+</div>
+<div class="content">
+    <div class="row content-product">
+        @foreach(var item in Model)
+        {
+            var url = "/chi-tiet/" + item.MASANPHAM;
+        <div class="col-md-3 simple-cart">
+            <div class="thumb-item">
+                <img src="~/Assets/client/images/anh/@item.HINHANH" alt="@item.TENSANPHAM" />
+            </div>
+            <div class="item-info-product">
+                <h4><a href="@url">@item.TENSANPHAM</a></h4>
+                <div class="info-product-price">
+                    <span>@(item.GIATRI.HasValue ? item.GIATRI.Value.ToString("#,##").Replace(',', '.') + "VNĐ" : "Liên hệ") </span>
+                </div>
+            </div>
+            <div class="snipCart-detail">
+                <a href="/them-gio-hang?MaSP=@item.MASANPHAM&SL=1"><input type="submit" value="Thêm vào giỏ" class="btn btn-info btn-gh" style="margin-left:50px" /></a>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="page-lst">
+        @Html.PagedListPager(Model, page => Url.Action("ProductAll", new { page }))
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,36 @@
+﻿/*CSS User*/
+.lbl-tt {
+    height: 45px;
+    background-color: #d6e6e6b5;
+    margin-bottom: 30px;
+}
+
+    .lbl-tt p {
+        height: 45px;
+        line-height: 45px;
+        padding-left: 15px;
+    }
+
+.ctt-top {
+    margin-bottom: 15px;
+}
+
+    .ctt-top h3 {
+        font-size: 30px;
+        color: #000;
+    }
+
+.chk-stt input[type=checkbox] {
+    height: 25px;
+    width: 25px;
+}
+.find-user{
+    padding-top:13px;
+}
+.pagination li {
+  margin: 0 4px; /* 0 is for top and bottom. Feel free to change it */
+  border: 1px solid #ddd; /* Gray */
+  padding:4px 10px;
+  transition:0.5s;
+  
+}

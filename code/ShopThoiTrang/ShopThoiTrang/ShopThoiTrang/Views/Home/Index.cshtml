@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+@model PagedList.IPagedList<Model.EF.SANPHAM>
+@using PagedList.Mvc;
+
+
+
+<div class="content">
+    <div class="content-top">
+        <div class="heading">
+            <h3>Sản phẩm mới</h3>
+        </div>
+        <div class="see">
+            <p><a href="/san-pham">Tất cả sản phẩm</a></p>
+        </div>
+    </div>
+
+    <div class="row content-product">
+        @foreach (var item in Model)
+        {
+            var url = "/chi-tiet/" + item.MASANPHAM;
+            <div class="col-md-3 simple-cart">
+                <a href="@url" class="thumb-item">
+                    <img class="wow bounceInRight" data-wow-duration="0.7s" data-wow-delay="0.5s" src="~/Assets/client/images/anh/@item.HINHANH" alt="@item.TENSANPHAM">
+                </a>
+
+                <div class="item-info-product">
+                    <h4><a href="@url">@item.TENSANPHAM</a></h4>
+                    <div class="info-product-price">
+                        <span>@(item.GIATRI.HasValue ? item.GIATRI.Value.ToString("#,##").Replace(',', '.') : "Liên hệ") VNĐ</span>
+                    </div>
+                </div>
+                <div class="snipCart-detail">
+                    <a href="/them-gio-hang?productId=@item.MASANPHAM&quantity=1"><input type="submit" value="Thêm vào giỏ" class="btn btn-info btn-gh" style="margin-left: 50px;"></a>
+                </div>
+            </div>
+        }
+    </div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+</div>

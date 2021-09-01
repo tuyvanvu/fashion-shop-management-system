@@ -1,0 +1,94 @@
+﻿@model List<Model.EF.SANPHAM>
+@{
+    var category = (Model.EF.LOAISANPHAM)ViewBag.category;
+    ViewBag.Title = category.TENLOAISP;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+
+}
+
+
+<div class="content" style="margin-top:15px;">
+    <div class="content-top">
+        <div class="heading">
+            <h3 style="font-size:23px;">@category.TENLOAISP</h3>
+        </div>
+        <div class="see">
+            <p><a href="/san-pham">See all Products</a></p>
+        </div>
+    </div>
+
+    <div class="row content-product">
+        @foreach (var item in Model)
+        {
+            var url = "/chi-tiet/" + item.LOAISANPHAM;
+            <div class="col-md-4 col-sm-6 simple-cart">
+                <div class="thumb-item">
+                    <img class="wow bounceInRight" data-wow-duration="0.7s" data-wow-delay="0.5s" src="~/Assets/client/images/anh/@item.HINHANH" alt="@item.TENSANPHAM">
+                </div>
+                <div class="see-detail">
+                    <a href="@url">Xem chi tiết</a>
+                </div>
+                <div class="item-info-product">
+                    <h4><a href="@url">@item.TENSANPHAM</a></h4>
+                    <div class="info-product-price">
+                        <span>@(item.GIATRI.HasValue ? item.GIATRI.Value.ToString("#,##").Replace(',', '.') : "Liên hệ") VNĐ</span>
+                    </div>
+                </div>
+                <div class="snipCart-detail">
+                    <a href="/them-gio-hang?productId=@item.MASANPHAM&quantity=1"><input type="submit" value="Thêm vào giỏ" class="btn btn-info btn-gh" style="margin-left: 50px;"></a>
+                </div>
+            </div>
+        }
+
+
+
+        @if (ViewBag.TotalPage > 1)
+        {
+            var pageDisplay = (int)ViewBag.MaxPage;
+            int totalPage = (int)ViewBag.TotalPage;
+            int currentPage = ((int)ViewBag.Page);
+
+            //Create nuberic links
+
+            var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+            var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+
+            var link = "/san-pham/" + category.MALOAISP;
+            <nav class="paging">
+                <ul class="pagination" id="myUL">
+                    @if (currentPage > ViewBag.First)
+                    {
+                        <li><a href="@link?page=@ViewBag.First" title="Trang đầu" class="first"><i class="fa fa-angle-double-left"></i></a></li>
+                        <li><a href="@link?page=@ViewBag.Prev" title="Trang trước" class="prev"><i class="fa fa-angle-left"></i></a></li>
+                    }
+                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                    {
+                        if (currentPage == 1)
+                        {
+                            <li class="page-item active"><a href="@link?page=@i" class="active" title="Trang đầu">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a href="@link?page=@i" class="pos" title="Trang @i">@i</a> </li>
+
+                        }
+
+                    }
+                    @if (currentPage < totalPage)
+                    {
+                        <li><a href="@link?page=@ViewBag.Next" title="Trang sau" class="next"><i class="fa fa-angle-right"></i></a></li>
+                        <li><a href="@link?page=@ViewBag.Last" title="Trang cuối" class="last"><i class="fa fa-angle-double-right"></i></a></li>
+                    }
+                </ul>
+            </nav>
+
+
+        }
+        else
+        {
+            <span>Không có bản ghi nào</span>
+        }
+    </div>
+</div>
+
+

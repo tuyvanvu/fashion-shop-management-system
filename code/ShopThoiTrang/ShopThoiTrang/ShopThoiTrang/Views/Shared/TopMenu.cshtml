@@ -1,0 +1,32 @@
+﻿@using ShopThoiTrang.Common
+@using Model.DAO
+
+<div class="row">
+    <div class="col-5">
+
+    </div>
+    <div class="col-6 agile-login">
+        @{ 
+            var dao = new UserDAO();
+            var nd = "";
+            if (UserLogon.TenDN != "")
+            {
+                nd = dao.GetUser(UserLogon.TenDN).TENNGUOIDUNG;
+            }
+        }
+        @if (nd == "")
+        {
+            <ul>
+                <li><a href="/Dang-Nhap">Đăng Nhập</a></li>
+                <li><a href="/Dang-Ky">Đăng Ký</a></li>
+            </ul>
+        }
+        else
+        {
+            <ul>
+                <li>Xin chào: @Html.ActionLink(nd, "UserInfo", "User")</li>
+                <li>@Html.ActionLink("Thoát", "Logout", "User")</li>
+            </ul>
+        }
+    </div>
+</div>

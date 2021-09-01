@@ -1,0 +1,51 @@
+﻿@model ShopThoiTrang.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<section class="container bg">
+    <section class="row justify-content-center">
+        <div class="col-12 col-sm-8 col-md-5">
+            <div class="form-container">
+                @using (Html.BeginForm("Register", "User", FormMethod.Post))
+                {
+                    <h2 style="text-align: center;">Đăng Ký</h2>
+                    <div>
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserName)
+                        @Html.TextBoxFor(model => model.UserName, new
+                        {
+                            @class = "form-control",
+                            @autofocus = "autofocus"
+
+                        })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password)
+                        @Html.PasswordFor(model => model.Password, new
+                        {
+                            @class = "form-control",
+                        })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RePassword)
+                        @Html.PasswordFor(model => model.RePassword, new
+                        {
+                            @class = "form-control",
+                        })
+                        @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
+                    </div>
+                    <input type="submit" class="btn btn-primary" style="margin: 0 40%;" value="Đăng Ký">
+                }
+            </div>
+        </div>
+    </section>
+</section>
+
+

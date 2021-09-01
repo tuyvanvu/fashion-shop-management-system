@@ -1,0 +1,165 @@
+﻿@model Model.EF.NGUOIDUNG
+@{
+    ViewBag.Title = "UserInfo";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+@{
+    var session = ShopThoiTrang.Common.UserLogon.TenDN;
+    if (session != null)
+    {
+        <div class="user-info justity-content-center">
+            <div class="row">
+                <div class="col-4">
+                    <div class="nav flex-column nav-pills tabs-left" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" onclick="HidenTTChung();" id="v-pills-ttlogin-ta" data-toggle="pill" href="#v-pills-ttlogin" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                            <div class="row">
+                                <div class="col-2 icon-left">
+                                    <i class="fa fa-user-circle fa-2x" aria-hidden="true" style="color: #c3ad0e;"></i>
+                                </div>
+                                <div class="col-10 name-tab-right">
+                                    <span>Thông tin đăng nhập</span><br />
+                                    <small>Quản lý thông tin dùng để đăng nhập</small>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="nav-link" id="v-pills-ttchung-tab" onclick="HidenTTLogin();" data-toggle="pill" href="#v-pills-ttchung" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                            <div class="row">
+                                <div class="col-2 icon-left">
+                                    <i class="fa fa-id-card-o fa-2x" aria-hidden="true" style="color: #096AAD;"></i>
+                                </div>
+                                <div class="col-10 name-tab-right">
+                                    <span>Thông tin chung</span><br />
+                                    <small>Xem và cập nhật thông tin cá nhân</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-ttlogin" role="tabpanel" aria-labelledby="v-pills-ttlogin-tab">
+                            <table class="table">
+                                <tr>
+                                    <td colspan="3" style="text-transform: uppercase; font-weight: bolder; font-size: 16px;"><i class="fa fa-chevron-circle-right " aria-hidden="true"></i>&nbsp;Thông tin đăng nhập</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-left">Tên đăng nhập:</td>
+                                    <td colspan="2" style="font-weight: bold;">@Model.TENDN</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-left">Email đăng nhập:</td>
+                                    @if (Model.EMAIL == null || Model.EMAIL == "")
+                                    {
+                                        <td style="font-style: italic;" colspan="2">(Chưa có thông tin)</td>
+                                    }
+                                    else
+                                    {
+                                        <td colspan="2">@Model.EMAIL</td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td class="td-left">SĐT đăng nhập:</td>
+                                    @if (Model.SDT == null || Model.SDT == "")
+                                    {
+                                        <td style="font-style: italic;">(Chưa có thông tin)</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@Model.SDT</td>
+                                    }
+
+                                </tr>
+                                <tr>
+                                    <td class="td-left"><span id="td-mk">Mật khẩu:</span></td>
+                                    <td colspan="2" id="span-mk">
+                                        <span style="float: left;">*************</span><a href="@Url.Action("ChangePassword","User")"><p style="float: right; color: #0a5ffb; cursor: pointer;">Đổi mật khẩu</p></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-ttchung" role="tabpanel" aria-labelledby="v-pills-ttchung-tab">
+                            <table class="table">
+                                <tr>
+                                    <td colspan="3" style="text-transform: uppercase; font-weight: bolder; font-size: 16px;"><i class="fa fa-chevron-circle-right " aria-hidden="true"></i>&nbsp;Thông tin cá nhân</td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên:</td>
+                                    <td colspan="2">@Model.TENNGUOIDUNG</td>
+                                </tr>
+                                <tr>
+                                    <td>Giới tính:</td>
+                                    <td>@Model.GIOITINH</td>
+                                </tr>
+                                <tr>
+                                    <td>Địa chỉ:</td>
+                                    @if (Model.DIACHI == null || Model.DIACHI == "")
+                                    {
+                                        <td style="font-style: italic;">(Chưa có thông tin)</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@Model.DIACHI</td>
+                                    }
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<script>
+    var btndoi = document.getElementById('v-pills-ttlogin-ta');
+    btndoi.classList.remove("active");
+    var btndoi2 = document.getElementById('v-pills-ttchung-tab');
+    btndoi2.classList.add("active"); 
+    function slbam (sl)
+    {
+        return sl;
+    }
+    function Changepass() {
+        document.getElementById('span-mk').style.display = "none";
+        document.getElementById('form-changepass').style.display = "block";
+        var td_mk = document.getElementById('td-mk');
+        td_mk.style.fontWeight = "bold";
+        td_mk.style.paddingLeft = "15px";
+    }
+    function HidenColMK() {
+        document.getElementById('span-mk').style.display = "block";
+        document.getElementById('form-changepass').style.display = "none";
+        var td_mk = document.getElementById('td-mk');
+        td_mk.style.fontWeight = "normal";
+        td_mk.style.paddingLeft = "0";
+    }
+    function HidenTTChung() {
+        btndoi2.classList.remove("active");
+        btndoi.classList.add("active");
+        let ttchung = document.getElementById('v-pills-ttchung');
+        ttchung.classList.remove("show");
+        ttchung.classList.remove("active");
+        ttchung.classList.add("fade");
+        let ttlogin = document.getElementById('v-pills-ttlogin');
+        ttlogin.classList.remove("fade");
+        ttlogin.classList.add("show");
+        ttlogin.classList.add("active");
+        
+    }
+    function HidenTTLogin() {
+        btndoi.classList.remove("active");
+        btndoi2.classList.add("active");
+        let ttlogin = document.getElementById('v-pills-ttlogin');
+        ttlogin.classList.remove("show");
+        ttlogin.classList.remove("active");
+        ttlogin.classList.add("fade");
+        let ttchung = document.getElementById('v-pills-ttchung');
+        ttchung.classList.remove("fade");
+        ttchung.classList.add("show");
+        ttchung.classList.add("active");
+    }
+    
+    function void0() {
+
+        HidenColMK();
+    }
+</script>

@@ -1,0 +1,10 @@
+﻿@model List<Model.EF.LOAISANPHAM>
+
+<h3 style=" font-family: 'Times New Roman'; text-decoration: none; font-weight: bold;  text-transform: uppercase;  color: #fff; font-size: 16px; background: #5194a9;  padding: 10px 15px; text-align: center;">Danh mục thời trang
+</h3><ul class="list-group list-group-flush text-left">
+    @foreach (var item in @Model)
+    {
+        <li class="list-group-item" style="background: #ecf0f1"><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="/san-pham/-@item.MALOAISP">@item.TENLOAISP</a></li>
+    }
+
+</ul>
